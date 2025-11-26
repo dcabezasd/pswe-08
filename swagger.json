@@ -1,0 +1,81 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PSWE-08 Service API",
+    "description": "Service API with status tracking and list endpoints",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/api/status": {
+      "get": {
+        "summary": "Check status and record visitor",
+        "description": "Returns OK status and stores the visitor name with timestamp",
+        "parameters": [
+          {
+            "name": "who",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Name of the person checking status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "OK"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing 'who' parameter"
+          }
+        }
+      }
+    },
+    "/api/list": {
+      "get": {
+        "summary": "Get list of status checks",
+        "description": "Returns the list of all status checks sorted by timestamp",
+        "responses": {
+          "200": {
+            "description": "List of status checks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "who": {
+                        "type": "string",
+                        "description": "Name of the visitor"
+                      },
+                      "timestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Time of the status check"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

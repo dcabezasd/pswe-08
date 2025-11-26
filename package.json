@@ -1,0 +1,25 @@
+{
+  "name": "pswe-08-service",
+  "version": "1.0.0",
+  "description": "Express service with Swagger API UI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "express",
+    "swagger",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}
