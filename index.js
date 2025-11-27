@@ -1,3 +1,4 @@
+// For local development only
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 
@@ -91,8 +92,7 @@ const swaggerSpec = {
 };
 
 // Serve Swagger UI
-app.use('/api-docs', swaggerUi.serve);
-app.get('/api-docs', swaggerUi.setup(swaggerSpec));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Root endpoint
 app.get('/', (req, res) => {
@@ -127,10 +127,8 @@ app.get('/api/list', (req, res) => {
   res.json(sortedList);
 });
 
-// Start server
+// Start server (for local development)
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Swagger UI available at http://localhost:${PORT}/api-docs`);
 });
-
-export default app;
